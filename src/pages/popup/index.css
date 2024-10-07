@@ -60,10 +60,10 @@ button {
   border-bottom-right-radius: 4px;
 }
 .ToggleGroupItem:hover {
-  background-color: rgb(157, 182, 218);
+  background-color: #43ff6466;
 }
 .ToggleGroupItem[data-state="on"] {
-  background-color: rgb(70 146 253);
+  background-color: #41A81D;
   color: white;
 }
 .ToggleGroupItem:focus {

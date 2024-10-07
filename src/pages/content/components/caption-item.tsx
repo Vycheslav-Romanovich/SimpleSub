@@ -50,7 +50,7 @@ export const CaptionItem = memo(
       <StyledNotFound>{CAPTION_NOT_FOUND}</StyledNotFound>
     );
 
-    const sourceCaption = (sourceText?.trim().length > 0 && sourceText) || (
+    const sourceCaption = (typeof sourceText === 'string' && sourceText) || (
       <StyledNotFound>{CAPTION_NOT_FOUND}</StyledNotFound>
     );
 
@@ -88,8 +88,10 @@ export const CaptionItem = memo(
           )}
 
           {captionsStyle === 'double' && <Divider isActive={isActive} />} */}
-          <p onClick={() => onClickItem(timestamp)}
-          style={{padding: '2px 4px', borderRadius: '4px', background: '#41A81D', color: 'white', fontSize: '14px', cursor: 'pointer'}}>{startTimeOfSubs(+timestamp.start)}</p>
+          <StyledCaptionTime
+            onClick={() => onClickItem(timestamp)}>
+            {startTimeOfSubs(+timestamp.start)}
+          </StyledCaptionTime>
           {/* ----------------Native Language (sourceText)----------------- */}
           {(captionsStyle === 'translate' || captionsStyle === 'double') && (
             <p>{isTranslate ? targetCaption : sourceCaption}</p>
@@ -188,3 +190,12 @@ const StyledNotFound = styled.span`
 `;
 
 CaptionItem.displayName = 'CaptionItem';
+
+const StyledCaptionTime = styled.div`
+  padding: 2px 4px; 
+  border-radius: 4px; 
+  background: #41A81D;
+  color: white; 
+  fontSize: 14px; 
+  cursor: pointer;
+`;

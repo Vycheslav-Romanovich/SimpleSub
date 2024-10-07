@@ -24,11 +24,11 @@ export const DesktopAppInjector = memo(({ playerData, hasPageVideo }: DesktopApp
   const [isLoading, setIsLoading] = useState(true);
   const [noCaptions, setNoCaptions] = useState(false);
 
-  // console.log('captions---->>>', captions);
+  // console.log('playerData---->>>', playerData);
 
   useEffect(() => {
     setIsLoading(true);
-    if (playerData !== null && hasPageVideo) {
+    if (playerData !== null && hasPageVideo && playerData !== undefined) {
       getCaptions({
         captions: playerData,
         defaultLang: sourceLangCode,
@@ -46,11 +46,11 @@ export const DesktopAppInjector = memo(({ playerData, hasPageVideo }: DesktopApp
         // });
       setNoCaptions(false);
     } else {
-      setCaptions(null);
+      // setCaptions(null);
       setIsLoading(false);
-      if (hasPageVideo) {
+      // if (hasPageVideo) {
         setNoCaptions(true);
-      }
+      // }
     }
 
     return () => {

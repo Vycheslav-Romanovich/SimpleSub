@@ -12,7 +12,6 @@ reloadOnUpdate('pages/content/style.scss');
 /*------------------------------- Get Player Data and send it to content ------------------------------- */
 const getPlayerData = async () => {
   const [tab] = await chrome.tabs.query({ active: true });
-  console.log('tab', tab);
   
   const videoId: string = await getYoutubeVideoId();
   let defaultCaption: CaptionsYoutube[];
@@ -22,13 +21,13 @@ const getPlayerData = async () => {
     const response = await fetch(url, optionsRequstCaptionsYoutube);
     if (response.status === 200) {
       const data: CaptionsUrl[] = await response.json();
-      console.log('data', data);
       
       if (!Array.isArray(data)) {
         throw new Error(`${videoId}`);
       }
 
-      const choosedLang: CaptionsUrl = data.find((e) => e.languageCode.includes(languageCode.EN));
+      // const choosedLang: CaptionsUrl = data.find((e) => e.languageCode.includes(languageCode.EN));
+      const choosedLang: CaptionsUrl = data[0]
       if (choosedLang) {
         const requestCaptions = await fetch(choosedLang.baseUrl);
         const text: string = await requestCaptions.text();
@@ -96,7 +95,6 @@ const getPlayerData = async () => {
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === 'complete' && tab) {
-    console.log('changeInfo', changeInfo);
     chrome.tabs.sendMessage(tabId, {
       action: 'tabUpdate',
       isDesktop: !tab.url.includes('m.youtube.com'),

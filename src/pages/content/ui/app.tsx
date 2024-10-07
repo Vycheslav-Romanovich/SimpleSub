@@ -14,13 +14,14 @@ export default function App() {
   const getPlayerData = () => {
     chrome.runtime.sendMessage('getPlayerData', (res: PlayerDataResponse) => {
       setPlayerData(res);
-      console.log('res',res);
     });
   };
 
   useEffect(() => {
+    if(videoId != '') {
         getPlayerData();
-        setHasPageVideo(true)
+        setHasPageVideo(true);
+    }
   }, [videoId]); 
 
   useEffect(()=>{
@@ -29,12 +30,13 @@ export default function App() {
       const videoParams = searchParams.get('v');
       if (videoId != videoParams) {
         setVideoId(videoParams);
+        setHasPageVideo(true);
       }
     }, 1000);
     return () => {
       clearInterval(timerId);
     }
-  },[])
+  },[]);
 
   return (
     <>

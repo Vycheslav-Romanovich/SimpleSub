@@ -59,7 +59,6 @@ export const getCaptions = async ({
   if (!captions || captions.length === 0) {
     return { captionsData: null };
   }
-  console.log('captions', captions);
   // const url = captions[0].baseUrl;
   // const regex = /lang=([a-zA-Z]{2})/g;
   // const translateUrl = url.replace(regex, `lang=${translateLang}`);

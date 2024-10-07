@@ -21,7 +21,7 @@ export const Settings = () => {
     useStorage(userSettingsStore);
   return (
     <SettingsContainer>
-      <LanguageSelect
+      {/* <LanguageSelect
         options={LANGS}
         label={'Learning Language'}
         id="target-lang"
@@ -36,14 +36,14 @@ export const Settings = () => {
         name={'source-lang'}
         defaultValue={sourceLangCode}
         onChange={e => userSettingsStore.setSourceLangCode(e.target.value as LangCodeType)}
-      />
+      /> */}
 
-      <ToggleGroupSettings
+      {/* <ToggleGroupSettings
         title={'Captions style'}
         defaultValue={captionsStyle}
         options={captionSettings.style}
         onChangeValue={value => userSettingsStore.setCaptionsStyle(value as CaptionStyles)}
-      />
+      /> */}
       <ToggleGroupSettings
         title={'Captions scale'}
         defaultValue={captionsScale}
